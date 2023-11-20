@@ -16,6 +16,9 @@ class MF52:
         self.Fz0 = 800
 
     def Fx(self, Fz, Kappa, Gamma):
+        if(Fz <= 0):
+            return 0
+
         lambdaFz0 = 1
         lambdaVx = 1
         lambdaMux = 1
@@ -64,7 +67,8 @@ class MF52:
     
     def Fy(self, Fz, Alpha, Gamma):
         """Return the lateral force (N) felt by a tire given a normal load (N), slip angle (rad), and camber angle (rad)"""
-        
+        if(Fz <= 0):
+            return 0
         # MF 5.2 equations require slip angle to be in degrees
         Alpha = math.degrees(Alpha)
 
@@ -134,11 +138,5 @@ class MF52:
 if __name__ == "__main__":
     tm = MF52()
 
-    Fx = []
-    for i in np.linspace(-0.2, 0.2):
-        Fx.append(tm.Fx(1400, i, 0))
-
-    fig, ax = plt.subplots()
-    ax.plot(np.linspace(-0.2, 0.2), Fx)
-    plt.show()
+    print(tm.Fx(-10, 0.1, 0))
 

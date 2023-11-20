@@ -9,7 +9,7 @@ class VehicleSetup():
     def __init__(self, overrides={}):
         cur_path = pathlib.Path(__file__).parent.resolve()
 
-        self.total_weight = 650
+        self.total_weight = 710
 
         # This means that 48% of the weight is on the fronts
         # Drill that into your head you fucking idiot
