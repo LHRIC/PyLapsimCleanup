@@ -17,7 +17,7 @@ def main():
                     try:
                         print(key, val.unit, val.value)
                     except:
-                        pass # not a constant param
+                        print(key, val, type(val))
 
 
 if __name__ == '__main__':

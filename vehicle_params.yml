@@ -146,6 +146,15 @@ PTN:
     name: Primary Gear Reduction
     symbol: red_primary
     unit: ""
+    expr: 76/36
+
+# TODO: Figure out a way to evaluate expressions within an array while parsing
+  GearRatios: !array [33/12, 32/16, 30/18, 26/18, 30/23, 29/24]
+
+  FinalDriveRatio: !numexpr
+    name: Final Drive Gear Ratio
+    symbol: red_final
+    unit: ""
     expr: 37/11
 
   Shiftpoint: !constant
