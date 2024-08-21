@@ -6,6 +6,7 @@ sys.path.insert(0, __file__.rsplit(os.sep,3)[0])
 
 from yaml_prop import PropertyLoader
 
+
 # %%
 def main():
     MODULE_PATH = __file__.rsplit(os.sep,1)[0]

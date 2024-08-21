@@ -91,13 +91,13 @@ DYN:
 
   FrontStaticCamber: !constant
     name: Front Static Camber
-    symbol: γ_f
+    symbol: \gamma_f
     unit: rad
     value: 0
 
   RearStaticCamber: !constant
     name: Rear Static Camber
-    symbol: γ_r
+    symbol: \gamma_r
     unit: rad
     value: 0
 
@@ -138,24 +138,45 @@ PTN:
     arguments: [rpm]
     units: ["rpm", "N*m"]
     symbols: [rpm, T]
-    defaults: [0.0, 0.0]
-    values: !inc torque_curve.yml
+    defaults: [0.0]
+    values: !include torque_curve.yml
     method: linear
 
-  PrimaryReduction: !numexpr
+  PrimaryReduction: !constant
     name: Primary Gear Reduction
     symbol: red_primary
     unit: ""
-    expr: 76/36
+    value: !numexpr
+      expr: '76/36'
 
-# TODO: Figure out a way to evaluate expressions within an array while parsing
-  GearRatios: !array [33/12, 32/16, 30/18, 26/18, 30/23, 29/24]
+  GearRatioLeaderToothCounts: !constant
+    name: Lead gear tooth counts
+    symbol: gr_lead
+    unit: ""
+    value: !array &LEADER [33, 32, 30, 26, 30, 29]
 
-  FinalDriveRatio: !numexpr
+  GearRatioFollowerToothCounts: !constant
+    name: Follower gear tooth counts
+    symbol: gr_follower
+    unit: ""
+    value: !array &FOLLOWER [12, 16, 18, 18, 23, 24]
+
+  GearRatios: !constant
+    name: Drivetrain Gear Ratios
+    symbol: gear
+    unit: ""
+    value: !numexpr
+      expr: "LEADER / FOLLOWER"
+      alias:
+        LEADER: *LEADER
+        FOLLOWER: *FOLLOWER
+
+  FinalDriveRatio: !constant
     name: Final Drive Gear Ratio
     symbol: red_final
     unit: ""
-    expr: 37/11
+    value: !numexpr
+      expr: '37/11'
 
   Shiftpoint: !constant
     name: Gear shift RPM
@@ -165,7 +186,7 @@ PTN:
 
   DrivetrainEfficiency: !constant
     name: Drivetrain efficiency
-    symbol: dtn_eff
+    symbol: \eta_{drivetrain}
     unit: "%"
     value: 85
   
