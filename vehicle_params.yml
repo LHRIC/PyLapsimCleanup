@@ -1,0 +1,168 @@
+DYN:
+  VehicleMass: !constant
+    name: Vehicle Mass
+    symbol: V_m
+    unit: lb
+    value: 595
+
+  FrontWeightDist: !constant
+    name: Weight Distribution (f)
+    symbol: wdf
+    unit: '%'
+    value: 46
+
+  CoGHeight: !constant
+    name: Center of Gravity Height
+    symbol: cg_z
+    unit: in
+    value: 12.0866
+
+  Wheelbase: !constant
+    name: Wheelbase
+    symbol: l
+    unit: m
+    value: 1.535
+  
+  FrontTrackwidth: !constant
+    name: Front Trackwidth
+    symbol: tw_f
+    unit: in
+    value: 48.875
+  
+  RearTrackwidth: !constant
+    name: Rear Trackwidth
+    symbol: tw_r
+    unit: in
+    value: 48.875
+
+  TorsionalRigidity: !constant
+    name: Torsional Rigidity
+    symbol: tr
+    unit: "N*m/deg"
+    value: 1184
+  
+  TorsionalRigidityNominal: !constant
+    name: Nominal Torsional Rigidity
+    symbol: tr_nom
+    unit: "N*m/deg"
+    value: 1184
+
+  FrontRollGradient: !constant
+    name: Front Roll Gradient
+    symbol: rg_f
+    unit: "deg/(m/s^2)"
+    value: 0.07645
+  
+  RearRollGradient: !constant
+    name: Rear Roll Gradient
+    symbol: rg_r
+    unit: "deg/(m/s^2)"
+    value: 0.07645
+
+  PitchGradient: !constant
+    name: Pitch Gradient
+    symbol: pg
+    unit: "deg/(m/s^2)"
+    value: 0.05097
+
+  FrontRideRate: !constant
+    name: Front Ride Rate
+    symbol: frr
+    unit: N/m
+    value: 33887.043
+  
+  RearRideRate: !constant
+    name: Rear Ride Rate
+    symbol: rrr
+    unit: N/m
+    value: 33887.043
+
+  FrontTireRadius: !constant
+    name: Front Tire Radius
+    symbol: R_tire_f
+    unit: m
+    value: 0.2032
+  
+  RearTireRadius: !constant
+    name: Rear Tire Radius
+    symbol: R_tire_r
+    unit: m
+    value: 0.2032
+
+  FrontStaticCamber: !constant
+    name: Front Static Camber
+    symbol: γ_f
+    unit: rad
+    value: 0
+
+  RearStaticCamber: !constant
+    name: Rear Static Camber
+    symbol: γ_r
+    unit: rad
+    value: 0
+
+  FrontKPI: !constant
+    name: Front KPI
+    symbol: KPI_f
+    unit: deg
+    value: 0
+  
+  RearKPI: !constant
+    name: Rear KPI
+    symbol: KPI_r
+    unit: deg
+    value: 0
+
+AERO:
+  Cl: !constant
+    name: Coefficient of Lift
+    symbol: C_l
+    unit: ""
+    value: 4.0
+  
+  Cd: !constant
+    name: Coefficient of Drag
+    symbol: C_d
+    unit: ""
+    value: 1.5
+  
+  CoP: !constant
+    name: Center of Pressure (f)
+    symbol: CoP
+    unit: "%"
+    value: 51
+  
+PTN:
+  EngineTorque: !table
+    name: Engine Torque
+    arguments: [rpm]
+    units: ["rpm", "N*m"]
+    symbols: [rpm, T]
+    defaults: [0.0, 0.0]
+    values: !inc torque_curve.yml
+    method: linear
+
+  PrimaryReduction: !numexpr
+    name: Primary Gear Reduction
+    symbol: red_primary
+    unit: ""
+    expr: 37/11
+
+  Shiftpoint: !constant
+    name: Gear shift RPM
+    symbol: rpm_shift
+    unit: "rpm"
+    value: 12500
+
+  DrivetrainEfficiency: !constant
+    name: Drivetrain efficiency
+    symbol: dtn_eff
+    unit: "%"
+    value: 85
+  
+  ShiftTime: !constant
+    name: Shifting time
+    symbol: t_shift
+    unit: "ms"
+    value: 250
+    

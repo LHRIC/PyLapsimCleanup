@@ -1,0 +1,18 @@
+name: qss_lapsim
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - matplotlib
+  - numpy
+  - scipy
+  - pyyaml
+  - numexpr
+  - pip
+  - pip:
+    - pint
+    - mip
+    - pytest-plt
+    - pyyaml-include==2.1
+    - -e /home/tejas/Code/yaml_prop # TODO: not portable
